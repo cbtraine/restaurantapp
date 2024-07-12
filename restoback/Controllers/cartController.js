@@ -22,6 +22,7 @@ exports.getCartItems = (req, res) => {
 };
 
 exports.updateCartItem = (req, res) => {
+  console.log(req.params);
   const { id } = req.params;
   const { quantity } = req.body;
 
