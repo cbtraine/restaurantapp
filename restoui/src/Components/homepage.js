@@ -16,6 +16,7 @@ const HomePage = () => {
     search: "",
     available: true,
   });
+  const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -29,6 +30,7 @@ const HomePage = () => {
   };
 
   const handleSearch = (searchTerm) => {
+    setSearchTerm(searchTerm); // Update search term state
     setFilters({ ...filters, search: searchTerm });
   };
 
@@ -66,7 +68,7 @@ const HomePage = () => {
           <CategoryDropdown onChange={handleCategoryChange} />
           <SearchBar onSearch={handleSearch} />
         </div>
-        <ItemsList filters={filters} />
+        <ItemsList filters={filters} searchTerm={searchTerm} />
       </div>
     </div>
   );
