@@ -99,6 +99,7 @@ const ItemOverview = () => {
     },
     "& .MuiInputBase-input": {
       width: "9em",
+      backdropFilter: "blur(20px)",
     },
     "&:hover .MuiOutlinedInput-notchedOutline": {
       borderColor: "white",
@@ -236,7 +237,9 @@ const ItemOverview = () => {
               "& .MuiInputBase-input": {
                 color: "white",
                 width: "10em",
+                backdropFilter: "blur(20px)",
               },
+
               "& .MuiInputLabel-root": {
                 color: "white",
               },

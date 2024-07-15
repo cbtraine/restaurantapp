@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
-import Bgimage from "../images/fire.jpg";
-import Img1 from "../images/img1.webp";
+import Bgimage from "../images/b14.jpg";
+import Img1 from "../images/b23.png";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 

@@ -3,8 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
-import Bgimage from "../images/fire.jpg";
-import Img1 from "../images/img2.webp";
+import Bgimage from "../images/b14.jpg";
+import Img1 from "../images/b21.png";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { storeUserDetails } from "../features/user/userSlice";
@@ -72,7 +72,7 @@ function LoginPage() {
       if (error.response && error.response.status === 401) {
         setFieldError("password", "Incorrect password");
         const notifySuccess = () => {
-          toast.success(
+          toast.error(
             "Please contact the Superadmin to request access for login.",
             {
               position: "top-right",

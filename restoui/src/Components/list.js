@@ -157,6 +157,7 @@ const AdminList = () => {
               "& .MuiInputBase-input": {
                 width: "9em",
                 color: "white",
+                backdropFilter: "blur(20px)",
               },
             }}
           >
@@ -178,6 +179,7 @@ const AdminList = () => {
               "& .MuiInputBase-input": {
                 color: "white",
                 width: "10em",
+                backdropFilter: "blur(20px)",
               },
               "& .MuiInputLabel-root": {
                 color: "white",
@@ -231,7 +233,7 @@ const AdminList = () => {
               style={{
                 margin: "auto",
                 width: 800,
-                backdropFilter: "blur(8px)",
+                backdropFilter: "blur(20px)",
                 backgroundColor: "rgba(255, 255, 255, 0.1)",
                 border: "2px solid #E5E7EB",
               }}

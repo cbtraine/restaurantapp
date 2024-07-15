@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
-import Bgimage from "../images/fire.jpg";
-import Img1 from "../images/ll.webp";
+import Bgimage from "../images/b14.jpg";
+import Img1 from "../images/b26.png";
 
 import List from "@mui/material/List";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -167,7 +167,7 @@ const MainLayout = ({ children }) => {
         >
           {open && (
             <div>
-              <img src={Img1} alt="logo" className="w-14 h-10" />
+              <img src={Img1} alt="logo" className="w-20 h-16" />
             </div>
           )}
 

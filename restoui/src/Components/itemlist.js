@@ -78,6 +78,9 @@ const ItemsList = ({ filters }) => {
             input: { color: "white" },
             label: { color: "white" },
             width: "17em",
+            "& .MuiInputBase-input": {
+              backdropFilter: "blur(40px)",
+            },
             "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
               borderColor: "gray",
             },

@@ -19,7 +19,7 @@ import {
 } from "@mui/material";
 import { Delete } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import Bgimage from "../images/fire.jpg";
+import Bgimage from "../images/b13.jpg";
 import Img1 from "../images/empty-cart-5521508-4610092.webp";
 
 const CartPage = () => {

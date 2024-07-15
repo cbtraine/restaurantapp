@@ -23,6 +23,8 @@ const CategoryDropdown = ({ onChange }) => {
       sx={{
         width: "17em",
         margin: "auto",
+        backdropFilter: "blur(40px)",
+
         "& .MuiInputBase-input": {
           color: "white",
         },

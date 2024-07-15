@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import Bgimage from "../images/fire.jpg";
+import Bgimage from "../images/b14.jpg";
 import Img3 from "../images/img3.avif";
 import axios from "axios";
 
