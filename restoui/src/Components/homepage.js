@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import CategoryDropdown from "../Components/categoryDropdown";
 import { fetchCartItems } from "../features/user/cartSlice";
 import ItemsList from "../Components/itemlist";
-import SearchBar from "../Components/searchbar";
+//import SearchBar from "../Components/searchbar";
 import Bgimage from "../images/fire.jpg";
 import { AppBar, Toolbar, IconButton, Box, Badge } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -13,10 +13,10 @@ import Img1 from "../images/ll.webp";
 const HomePage = () => {
   const [filters, setFilters] = useState({
     category: "",
-    search: "",
+    // search: "",
     available: true,
   });
-  const [searchTerm, setSearchTerm] = useState("");
+  // const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -29,10 +29,10 @@ const HomePage = () => {
     setFilters({ ...filters, category: e.target.value });
   };
 
-  const handleSearch = (searchTerm) => {
-    setSearchTerm(searchTerm); // Update search term state
-    setFilters({ ...filters, search: searchTerm });
-  };
+  // const handleSearch = (searchTerm) => {
+  //   setSearchTerm(searchTerm); // Update search term state
+  //   setFilters({ ...filters, search: searchTerm });
+  // };
 
   const handleCartClick = () => {
     navigate("/cartpage");
@@ -66,9 +66,9 @@ const HomePage = () => {
       <div className="home-page  w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-20 flex flex-col items-center">
         <div className=" py-4 flex flex-row items-center justify-between w-full items-center ">
           <CategoryDropdown onChange={handleCategoryChange} />
-          <SearchBar onSearch={handleSearch} />
+          {/* <SearchBar onSearch={handleSearch} /> */}
         </div>
-        <ItemsList filters={filters} searchTerm={searchTerm} />
+        <ItemsList filters={filters} />
       </div>
     </div>
   );
