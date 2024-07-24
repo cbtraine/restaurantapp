@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchItems } from "../features/user/itemSlice";
-
 import {
   updateCartItem,
   addToCart as addToCartAction,
@@ -26,7 +25,7 @@ const ItemsList = ({ filters }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [addedItems, setAddedItems] = useState({});
   const [searchTerm, setSearchTerm] = useState("");
-  const itemsPerPage = 6; // Ensures 2 rows of 3 items each per page
+  const itemsPerPage = 6;
 
   useEffect(() => {
     dispatch(
@@ -44,6 +43,13 @@ const ItemsList = ({ filters }) => {
       ...prev,
       [item_id]: true,
     }));
+
+    setTimeout(() => {
+      setAddedItems((prev) => ({
+        ...prev,
+        [item_id]: false,
+      }));
+    }, 2000);
   };
 
   const handleQuantityChange = (id, newQuantity) => {
@@ -171,7 +177,6 @@ const ItemsList = ({ filters }) => {
                       display: "flex",
                       flexDirection: "column",
                       justifyContent: "center",
-                      //alignItems: "center",
                       pb: 0,
                       "& .MuiInputBase-input": {
                         color: "white",

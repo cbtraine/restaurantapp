@@ -226,7 +226,6 @@ const UserController = {
     const userId = req.userId;
 
     try {
-      //console.log(`Fetching user details for: ${userId}`);
       const user = await UserModel.getUserByEmail(userId);
       if (user) {
         res.json({ username: user.username, email: user.email });

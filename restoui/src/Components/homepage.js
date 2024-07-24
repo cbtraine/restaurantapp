@@ -63,7 +63,7 @@ const HomePage = () => {
       </AppBar>
 
       <div className="home-page  w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-20 flex flex-col items-center">
-        <div className=" py-4 flex flex-row items-center justify-between w-full items-center ">
+        <div className=" py-4 flex flex-row items-center justify-between w-full  ">
           <CategoryDropdown onChange={handleCategoryChange} />
         </div>
         <ItemsList filters={filters} />

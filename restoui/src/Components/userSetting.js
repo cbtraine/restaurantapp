@@ -22,10 +22,6 @@ const notifySuccess = () => {
 const UserSettings = () => {
   const navigate = useNavigate();
 
-  // const userData = useSelector((state) => state.user.details);
-
-  // console.log("user data from redux =>", userData);
-
   let userData = localStorage.getItem("userdetails");
   userData = JSON.parse(userData);
 

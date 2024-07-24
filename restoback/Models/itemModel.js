@@ -7,15 +7,6 @@ const Item = {
     db.query(sql, [name, image, price, category_id], callback);
   },
 
-  // getByCategory: (categoryId, callback) => {
-  //   const sql =
-  //     "SELECT * FROM items WHERE category_id = ? AND available = TRUE";
-  //   db.query(sql, [categoryId], callback);
-  // },
-  // searchByName: (name, callback) => {
-  //   const sql = "SELECT * FROM items WHERE name LIKE ? AND available = TRUE";
-  //   db.query(sql, [`%${name}%`], callback);
-  // },
   getAll: (filter, callback) => {
     let query = `
        SELECT items.*, categories.name AS category_name, categories.type AS category_type

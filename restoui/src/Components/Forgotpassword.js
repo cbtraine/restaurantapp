@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Bgimage from "../images/b14.jpg";
-import Img3 from "../images/img3.avif";
+import Img3 from "../images/img3-removebg.png";
 import axios from "axios";
 
 const ForgotPasswordPage = () => {
@@ -81,7 +81,7 @@ const ForgotPasswordPage = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-gray-800 text-white py-2 rounded-lg hover:bg-gray-700 transition duration-200"
+                  className="w-full bg-[#2D3728] text-white py-2 rounded-lg hover:bg-[#565e52] transition duration-200"
                 >
                   {isSubmitting ? "Sending..." : "Send OTP"}
                 </button>

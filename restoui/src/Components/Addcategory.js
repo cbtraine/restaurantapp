@@ -13,10 +13,11 @@ import {
   Typography,
   Stack,
 } from "@mui/material";
-import { toast } from "react-toastify";
+
 import CloseIcon from "@mui/icons-material/Close";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const AddCategory = () => {
   const [name, setName] = useState("");
@@ -73,7 +74,7 @@ const AddCategory = () => {
   const handleImageRemove = () => {
     setImage(null);
     setImageName("");
-    // Clear file input (optional, for better UX)
+
     fileInputRef.current.value = "";
   };
 
@@ -83,7 +84,6 @@ const AddCategory = () => {
         component="form"
         onSubmit={handleSubmit}
         className=" ml-4 p-4 lg:p-8 bg-white shadow-lg rounded-lg space-y-4 w-full max-w-md backdrop-filter backdrop-blur-lg bg-opacity-10 border border-gray-200"
-   
       >
         <TextField
           label="Name"
@@ -114,54 +114,57 @@ const AddCategory = () => {
             },
           }}
         />
-       <Box sx={{ position: "relative", display: "flex", alignItems: "center" }}>
-  <input
-    id="image-upload"
-    type="file"
-    accept="image/*"
-    onChange={handleFileChange}
-    ref={fileInputRef}
-    style={{ display: "none" }}
-  />
-  <TextField
-    label="Image"
-    value={imageName ? imageName : "Image Upload"}
-    onClick={handleIconClick}
-    InputProps={{
-      readOnly: true,
-      endAdornment: (
-        <InputAdornment position="end">
-          <IconButton >
-            <CloudUploadIcon sx={{ color: "white" }} />
-          </IconButton>
-        </InputAdornment>
-      ),
-    }}
-    variant="outlined"
-    fullWidth
-    sx={{
-      "& .MuiInputBase-input": {
-        color: "white",
-      },
-      "& .MuiInputLabel-root": {
-        color: "white",
-      },
-      "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-        borderColor: "gray",
-      },
-      "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-        borderColor: "white",
-      },
-      "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-        borderColor: "white",
-      },
-      "& .MuiInputLabel-root.Mui-focused": {
-        color: "white",
-      },
-    }}
-  />
-</Box>
-
+        <Box
+          sx={{ position: "relative", display: "flex", alignItems: "center" }}
+        >
+          <input
+            id="image-upload"
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            ref={fileInputRef}
+            style={{ display: "none" }}
+          />
+          <TextField
+            label="Image"
+            value={imageName ? imageName : "Image Upload"}
+            onClick={handleIconClick}
+            InputProps={{
+              readOnly: true,
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton>
+                    <CloudUploadIcon sx={{ color: "white" }} />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+            variant="outlined"
+            fullWidth
+            sx={{
+              "& .MuiInputBase-input": {
+                color: "white",
+              },
+              "& .MuiInputLabel-root": {
+                color: "white",
+              },
+              "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                borderColor: "gray",
+              },
+              "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline":
+                {
+                  borderColor: "white",
+                },
+              "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+                {
+                  borderColor: "white",
+                },
+              "& .MuiInputLabel-root.Mui-focused": {
+                color: "white",
+              },
+            }}
+          />
+        </Box>
 
         {image && (
           <Box display="flex" alignItems="center">
@@ -171,14 +174,14 @@ const AddCategory = () => {
               style={{ width: "100px", height: "100px", marginRight: "10px" }}
             />
             <IconButton onClick={handleImageRemove}>
-              <CloseIcon />
+              <CloseIcon sx={{ color: "white" }} />
             </IconButton>
           </Box>
         )}
 
         {imageName && (
           <Box>
-            <Typography>{imageName}</Typography>
+            <Typography sx={{ color: "white" }}>{imageName}</Typography>
           </Box>
         )}
 
@@ -229,9 +232,9 @@ const AddCategory = () => {
           type="submit"
           variant="contained"
           sx={{
-            backgroundColor: "#2d3748",
+            backgroundColor: "#2D3728",
             "&:hover": {
-              backgroundColor: "#4a5568",
+              backgroundColor: "#565e52",
             },
             color: "white",
           }}

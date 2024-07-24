@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchCartItems,
-  removeFromCart,
-  updateCartItem,
-} from "../features/user/cartSlice";
+import { fetchCartItems, removeFromCart } from "../features/user/cartSlice";
 import {
   Card,
   CardMedia,
@@ -16,6 +12,10 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
+  Snackbar,
+  Alert,
+  TextField,
+  Rating,
 } from "@mui/material";
 import { Delete } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
@@ -25,50 +25,98 @@ import Img1 from "../images/empty-cart-5521508-4610092.webp";
 const CartPage = () => {
   const dispatch = useDispatch();
   const cartState = useSelector((state) => state.cart);
-  const { cartItems, count } = cartState;
+  const { cartItems } = cartState;
 
-  const [tabValue, setTabValue] = useState(0);
-  const [openDialog, setOpenDialog] = useState(false); // Added for dialog state
+  const [openDialog, setOpenDialog] = useState(false);
   const [itemToDelete, setItemToDelete] = useState(null);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [openReviewDialog, setOpenReviewDialog] = useState(false);
+  const [reviewData, setReviewData] = useState({
+    name: "",
+    comment: "",
+    rating: 2,
+    items: [],
+    cartId: "",
+  });
+  const [nameError, setNameError] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchCartItems());
   }, [dispatch]);
 
-  useEffect(() => {
-    console.log("Cart State:", cartState);
-  }, [cartState]);
-
   const handleRemove = (id) => {
     dispatch(removeFromCart(id));
     handleCloseDialog();
   };
 
-  const handleUpdateQuantity = (id, quantity) => {
-    dispatch(updateCartItem({ id, quantity }));
-  };
-
-  const handleTabChange = (event, newValue) => {
-    setTabValue(newValue);
-  };
-
   const handleStartShopping = () => {
     navigate("/homepage");
   };
+
   const handleBack = () => {
     navigate("/homepage");
   };
 
   const handleOpenDialog = (item) => {
-    // Added to open dialog
-    setItemToDelete(item); // Set the item to be deleted
-    setOpenDialog(true); // Open the dialog
+    setItemToDelete(item);
+    setOpenDialog(true);
   };
+
   const handleCloseDialog = () => {
-    // Added to close dialog
-    setOpenDialog(false); // Close the dialog
-    setItemToDelete(null); // Reset the item to be deleted
+    setOpenDialog(false);
+    setItemToDelete(null);
+  };
+
+  const handleBuy = () => {
+    if (cartItems.length > 0) {
+      setReviewData({
+        ...reviewData,
+        items: cartItems.map((item) => ({
+          itemName: item.name,
+          itemPrice: item.price,
+          cartQuantity: item.quantity,
+        })),
+        cartId: cartItems[0].id,
+      });
+      setOpenReviewDialog(true);
+    }
+  };
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenSnackbar(false);
+  };
+
+  const handleCloseReviewDialog = () => setOpenReviewDialog(false);
+
+  const handleReviewSubmit = async () => {
+    if (reviewData.name.trim() === "") {
+      setNameError(true);
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:5000/api/reviews/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(reviewData),
+      });
+      const result = await response.json();
+      if (response.ok) {
+        setOpenSnackbar(true);
+        handleCloseReviewDialog();
+      } else {
+        throw new Error(result.error);
+      }
+    } catch (error) {
+      console.error("Failed to submit review:", error);
+    }
   };
 
   if (!cartItems) {
@@ -170,49 +218,6 @@ const CartPage = () => {
               </Box>
               <Box
                 sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  mt: { xs: 2, sm: 0 },
-                }}
-              >
-                <Button
-                  variant="contained"
-                  onClick={() =>
-                    handleUpdateQuantity(item.id, item.quantity + 1)
-                  }
-                  sx={{
-                    backgroundColor: "transparent",
-                    backdropFilter: "blur(1px)",
-                    color: "white",
-                    minWidth: "30px",
-                  }}
-                >
-                  +
-                </Button>
-                <Typography
-                  variant="body1"
-                  sx={{ mx: 2, display: "flex", alignItems: "center" }}
-                >
-                  {item.quantity}
-                </Typography>
-                <Button
-                  variant="contained"
-                  onClick={() =>
-                    handleUpdateQuantity(item.id, item.quantity - 1)
-                  }
-                  sx={{
-                    backgroundColor: "transparent",
-                    backdropFilter: "blur(1px)",
-                    color: "white",
-                    minWidth: "30px",
-                  }}
-                  disabled={item.quantity === 1}
-                >
-                  -
-                </Button>
-              </Box>
-              <Box
-                sx={{
                   paddingX: "20px",
                   textAlign: "center",
                   mt: { xs: 2, sm: 0 },
@@ -244,27 +249,37 @@ const CartPage = () => {
               )}{" "}
               Rs
             </Typography>
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: "transparent",
-                backdropFilter: "blur(1px)",
-                color: "white",
-              }}
-              onClick={handleBack}
-            >
-              Back
-            </Button>
+            <Box>
+              <Button
+                variant="contained"
+                color="success"
+                sx={{
+                  backgroundColor: "#4CAF50",
+                  ":hover": { backgroundColor: "#45a049" },
+                  marginRight: "8px",
+                }}
+                onClick={handleBuy}
+              >
+                Buy Now
+              </Button>
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor: "transparent",
+                  backdropFilter: "blur(1px)",
+                  color: "white",
+                }}
+                onClick={handleBack}
+              >
+                Back
+              </Button>
+            </Box>
           </Box>
         )}
       </Card>
 
-      <Dialog
-        open={openDialog}
-        onClose={handleCloseDialog}
-        aria-labelledby="confirm-delete-dialog"
-      >
-        <DialogTitle id="confirm-delete-dialog">Confirm Delete</DialogTitle>
+      <Dialog open={openDialog} onClose={handleCloseDialog}>
+        <DialogTitle>Confirm Removal</DialogTitle>
         <DialogContent>
           <Typography>
             Are you sure you want to delete{" "}
@@ -272,19 +287,129 @@ const CartPage = () => {
           </Typography>
         </DialogContent>
         <DialogActions>
-          <Button variant="contained" onClick={handleCloseDialog} color="error">
+          <Button variant="contained" color="error" onClick={handleCloseDialog}>
             Cancel
           </Button>
           <Button
             variant="contained"
-            onClick={() => handleRemove(itemToDelete.id)}
             color="success"
-            autoFocus
+            onClick={() => handleRemove(itemToDelete.id)}
           >
-            Delete
+            Remove
           </Button>
         </DialogActions>
       </Dialog>
+
+      <Dialog open={openReviewDialog} onClose={handleCloseReviewDialog}>
+        <DialogTitle>Submit Your Details</DialogTitle>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            label="Name"
+            fullWidth
+            variant="standard"
+            value={reviewData.name}
+            onChange={(e) => {
+              setReviewData({ ...reviewData, name: e.target.value });
+              setNameError(false);
+            }}
+            sx={{
+              "& .MuiInputBase-input": {
+                color: "white",
+              },
+              "& .MuiInputLabel-root": {
+                color: "white",
+              },
+              "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                borderColor: "gray",
+              },
+              "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline":
+                {
+                  borderColor: "white",
+                },
+              "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+                {
+                  borderColor: "white",
+                },
+              "& .MuiInputLabel-root.Mui-focused": {
+                color: "white",
+              },
+            }}
+            error={nameError}
+            helperText={nameError ? "Name is required" : ""}
+          />
+          <TextField
+            margin="dense"
+            label="Comment"
+            fullWidth
+            variant="standard"
+            value={reviewData.comment}
+            onChange={(e) =>
+              setReviewData({ ...reviewData, comment: e.target.value })
+            }
+            sx={{
+              "& .MuiInputBase-input": {
+                color: "white",
+              },
+              "& .MuiInputLabel-root": {
+                color: "white",
+              },
+              "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                borderColor: "gray",
+              },
+              "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline":
+                {
+                  borderColor: "white",
+                },
+              "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+                {
+                  borderColor: "white",
+                },
+              "& .MuiInputLabel-root.Mui-focused": {
+                color: "white",
+              },
+            }}
+          />
+          <Box sx={{ mt: 2 }}>
+            <Typography component="legend">Rating</Typography>
+            <Rating
+              name="rating"
+              value={reviewData.rating}
+              onChange={(e, newValue) =>
+                setReviewData({ ...reviewData, rating: newValue })
+              }
+              max={5}
+            />
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            variant="contained"
+            color="error"
+            onClick={handleCloseReviewDialog}
+          >
+            Cancel
+          </Button>
+          <Button
+            variant="contained"
+            color="success"
+            onClick={handleReviewSubmit}
+          >
+            Submit
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackbar}
+      >
+        <Alert onClose={handleCloseSnackbar} severity="success">
+          Item placed successfully!
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

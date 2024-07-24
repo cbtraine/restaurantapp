@@ -68,7 +68,7 @@ const AddFoodItem = () => {
         headers: { "Content-Type": "multipart/form-data" },
       });
       notifySuccess();
-      // Clear form
+
       setCategory("");
       setName("");
       setImage(null);
@@ -91,7 +91,7 @@ const AddFoodItem = () => {
   const handleImageRemove = () => {
     setImage(null);
     setImageName("");
-    // Clear file input (optional, for better UX)
+
     fileInputRef.current.value = "";
   };
   return (
@@ -233,14 +233,14 @@ const AddFoodItem = () => {
               style={{ width: "100px", height: "100px", marginRight: "10px" }}
             />
             <IconButton onClick={handleImageRemove}>
-              <CloseIcon />
+              <CloseIcon sx={{ color: "white" }} />
             </IconButton>
           </Box>
         )}
 
         {imageName && (
           <Box>
-            <Typography>{imageName}</Typography>
+            <Typography sx={{ color: "white" }}>{imageName}</Typography>
           </Box>
         )}
         <TextField
@@ -277,9 +277,9 @@ const AddFoodItem = () => {
           type="submit"
           variant="contained"
           sx={{
-            backgroundColor: "#2d3748",
+            backgroundColor: "#2D3728",
             "&:hover": {
-              backgroundColor: "#4a5568",
+              backgroundColor: "#565e52",
             },
             color: "white",
           }}

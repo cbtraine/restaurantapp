@@ -120,11 +120,11 @@ const AdminList = () => {
   };
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
-    setPage(0); // Reset page to 0 when searching
+    setPage(0);
   };
   const handleAvailabilityChange = (event) => {
     setAvailabilityFilter(event.target.value);
-    setPage(0); // Reset page to 0 when searching
+    setPage(0);
   };
 
   return (
@@ -172,7 +172,7 @@ const AdminList = () => {
             </MenuItem>
           </Select>
           <TextField
-            label="Search by username"
+            label="Search by name"
             value={searchQuery}
             onChange={handleSearchChange}
             sx={{

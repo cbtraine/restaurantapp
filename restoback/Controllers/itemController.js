@@ -12,27 +12,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage }).single("image");
 
-// exports.getItemsByCategory = (req, res) => {
-//   const { categoryId } = req.params;
-//   Item.getByCategory(categoryId, (err, results) => {
-//     if (err) {
-//       console.error("Error fetching items by category:", err);
-//       return res.status(500).send({ message: "Internal server error" });
-//     }
-//     res.send(results);
-//   });
-// };
-// exports.searchItems = (req, res) => {
-//   const { name } = req.query;
-//   Item.searchByName(name, (err, results) => {
-//     if (err) {
-//       console.error("Error searching items:", err);
-//       return res.status(500).send({ message: "Internal server error" });
-//     }
-//     res.send(results);
-//   });
-// };
-
 exports.createItem = (req, res) => {
   upload(req, res, (err) => {
     if (err) {
@@ -53,7 +32,7 @@ exports.createItem = (req, res) => {
         image,
         price,
         category_id,
-        category_type: result.category_type, // Adjust based on actual response structure
+        category_type: result.category_type,
       };
       res.status(201).send(newItem);
     });

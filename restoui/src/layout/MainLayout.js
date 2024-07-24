@@ -26,14 +26,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 const drawerWidth = 240;
 const drawerBackgroundColor = "rgba(0, 0, 0, 0)";
 
-// if(role === "superdsfdsf"){
-//   menuList.push(  {
-//     text: "Admin Management",
-//     icon: <ManageAccountsIcon sx={{ color: "#fff" }} />,
-//     page: "/admindatapage",
-//   },)
-// }
-
 const openedMixin = (theme) => ({
   width: drawerWidth,
   transition: theme.transitions.create("width", {
@@ -64,8 +56,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   alignItems: "center",
   justifyContent: "flex-end",
   backdropFilter: "blur(8px)",
-  // backgroundColor: "rgba(255, 255, 255, 0.1)",
-  // border: "2px solid #E5E7EB",
+
   padding: theme.spacing(0, 1),
 
   ...theme.mixins.toolbar,
@@ -77,8 +68,7 @@ const Drawer = styled(MuiDrawer, {
 })(({ theme, open }) => ({
   width: drawerWidth,
   backdropFilter: "blur(4px)",
-  // backgroundColor: "rgba(255, 255, 255, 0.1)",
-  //border: "2px solid #E5E7EB",
+
   flexShrink: 0,
   whiteSpace: "nowrap",
 
@@ -117,7 +107,7 @@ const MainLayout = ({ children }) => {
     setOpen(!open);
   };
   const role = localStorage.getItem("role");
-  console.log("Role from localStorage:", role); // Add this line to debug
+  console.log("Role from localStorage:", role);
 
   const menuItems = [
     {
@@ -134,6 +124,11 @@ const MainLayout = ({ children }) => {
       text: "Item Overview",
       icon: <ListAlt sx={{ color: "#fff" }} />,
       page: "/itemoverview",
+    },
+    {
+      text: "Customer Data",
+      icon: <ListAlt sx={{ color: "#fff" }} />,
+      page: "/datapage",
     },
   ];
 
@@ -223,13 +218,6 @@ const MainLayout = ({ children }) => {
       <Box
         component="main"
         sx={{
-          // flexGrow: 1,
-          // p: 0,
-          // minHeight: "100vh",
-          // backgroundImage: `url(${Bgimage})`,
-          // backgroundSize: "cover",
-          // backgroundPosition: "center",
-
           width: "100%",
           minHeight: "100vh",
         }}

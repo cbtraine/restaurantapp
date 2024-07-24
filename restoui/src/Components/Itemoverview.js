@@ -111,9 +111,7 @@ const ItemOverview = () => {
       backgroundColor: "transparent",
     },
   }));
-  const WhiteTextMenuItem = styled(MenuItem)(({ theme }) => ({
-    // color: "white",
-  }));
+  const WhiteTextMenuItem = styled(MenuItem)(({ theme }) => ({}));
 
   const handleDelete = async (id) => {
     try {
@@ -203,11 +201,11 @@ const ItemOverview = () => {
   };
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
-    setPage(0); // Reset page to 0 when searching
+    setPage(0);
   };
   const handleAvalibiltyChange = (event) => {
     setAvailabilityFilter(event.target.value);
-    setPage(0); // Reset page to 0 when searching
+    setPage(0);
   };
 
   return (
@@ -393,7 +391,6 @@ const ItemOverview = () => {
           </>
         )}
 
-        {/* edit item dialog  */}
         <Dialog
           open={open}
           onClose={handleClose}
@@ -406,15 +403,7 @@ const ItemOverview = () => {
             },
           }}
         >
-          <DialogContent
-          // sx={{
-          //   paddingX: "40px",
-          //   backdropFilter: "blur(500px)",
-          //   //  backgroundColor: "rgba(0, 0, 0, 0.1)",
-          //   border: "2px solid #E5E7EB",
-          //   backgroundColor: "transparent",
-          // }}
-          >
+          <DialogContent>
             <form
               onSubmit={handleUpdate}
               style={{
@@ -517,7 +506,7 @@ const ItemOverview = () => {
                     }}
                   />
                   <IconButton onClick={handleImageRemove}>
-                    <CancelIcon />
+                    <CancelIcon sx={{ color: "white" }} />
                   </IconButton>
                 </Box>
               )}
@@ -552,38 +541,7 @@ const ItemOverview = () => {
                 variant="outlined"
                 fullWidth
               />
-              {/* <TextField
-                sx={{
-                  "& .MuiInputBase-input": {
-                    color: "white",
-                  },
-                  "& .MuiInputLabel-root": {
-                    color: "white",
-                  },
-                  "& .MuiOutlinedInput-root": {
-                    "& fieldset": {
-                      borderColor: "white",
-                    },
-                    "&:hover fieldset": {
-                      borderColor: "white",
-                    },
-                    "&.Mui-focused fieldset": {
-                      borderColor: "white",
-                    },
-                  },
-                }}
-                label="Category ID"
-                value={editItem.category_id}
-                onChange={(e) =>
-                  setEditItem({
-                    ...editItem,
-                    category_id: e.target.value,
-                  })
-                }
-                required
-                variant="outlined"
-                fullWidth
-              /> */}
+
               <DialogActions>
                 <Button variant="contained" color="error" onClick={handleClose}>
                   Cancel
@@ -596,7 +554,6 @@ const ItemOverview = () => {
           </DialogContent>
         </Dialog>
 
-        {/* delete item dialog  */}
         <Dialog
           sx={{
             "& .MuiPaper-root": {

@@ -64,7 +64,7 @@ function LoginPage() {
       dispatch(storeUserDetails(response.data.user));
 
       localStorage.setItem("userdetails", JSON.stringify(response.data.user));
-      localStorage.setItem("role", response.data.user.role); // Set role in localStorage
+      localStorage.setItem("role", response.data.user.role);
       navigate("/itemoverview");
 
       localStorage.setItem("token", response.data.token);
@@ -172,7 +172,7 @@ function LoginPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-gray-800 text-white py-2 rounded-lg hover:bg-gray-700 transition duration-200"
+                  className="w-full bg-[#2D3728] text-white py-2 rounded-lg hover:bg-[#565e52] transition duration-200"
                 >
                   {isSubmitting ? "Logging In..." : "Login"}
                 </button>

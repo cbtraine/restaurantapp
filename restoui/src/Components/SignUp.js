@@ -34,7 +34,6 @@ function SignUpPage() {
       }
     );
   };
-  // const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
     username: Yup.string().required("Username is required"),
@@ -63,7 +62,7 @@ function SignUpPage() {
       notifySuccess();
       resetForm();
       console.log(response.data);
-      // navigate("/itemoverview");
+
       localStorage.setItem("token", response.data.token);
     } catch (error) {
       if (error.response && error.response.status === 400) {
@@ -168,7 +167,7 @@ function SignUpPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-gray-800 text-white py-2 rounded-lg hover:bg-gray-700 transition duration-200"
+                  className="w-full bg-[#2D3728] text-white py-2 rounded-lg hover:bg-[#565e52] transition duration-200"
                 >
                   {isSubmitting ? "Signing Up..." : "Sign Up"}
                 </button>

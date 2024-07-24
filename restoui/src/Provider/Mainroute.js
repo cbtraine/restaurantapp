@@ -13,6 +13,7 @@ import Header from "../shared/Commonheader";
 import AdminDataPage from "../Components/list";
 import HomePage from "../Components/homepage";
 import CartPage from "../Components/cartpage";
+import DataPage from "../Components/dataPage";
 
 function MainRoute() {
   return (
@@ -22,6 +23,7 @@ function MainRoute() {
           <Route path="/itemoverview" element={<ItemOverview />} />
           <Route path="/addcategory" element={<AddCategory />} />
           <Route path="/addfooditem" element={<AddFoodItem />} />
+          <Route path="/datapage" element={<DataPage />} />
         </Route>
 
         <Route element={<PrivateRoute superadminOnly />}>

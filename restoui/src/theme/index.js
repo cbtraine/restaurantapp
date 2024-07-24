@@ -28,7 +28,7 @@ const lightTheme = createTheme({
       fontWeight: 500,
     },
     button: {
-      // fontStyle: "italic",
+    
     },
     h1: {
       color: "#FF0000",

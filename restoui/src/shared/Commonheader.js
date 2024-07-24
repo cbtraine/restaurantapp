@@ -36,7 +36,7 @@ const CommonHeader = () => {
         <AccountCircleSharpIcon
           className="cursor-pointer"
           onClick={toggleUserSettings}
-          style={{ fontSize: 50, color: "#8F2D30" }}
+          style={{ fontSize: 50, color: "yellow" }}
           ref={iconRef}
         />
         {showUserSettings && (
