@@ -54,7 +54,7 @@ function LoginPage() {
   ) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/login",
+        `${process.env.REACT_APP_API_URL}/login`,
         values
       );
       notifySuccess();

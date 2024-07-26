@@ -35,10 +35,13 @@ const OTPVerificationPage = () => {
 
   const handleOTPVerification = async (otp) => {
     try {
-      const response = await axios.post("http://localhost:5000/api/verifyotp", {
-        email,
-        otp,
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/verifyotp`,
+        {
+          email,
+          otp,
+        }
+      );
       if (response.data.success) {
         setOtpVerified(true);
         setError("");
@@ -53,7 +56,7 @@ const OTPVerificationPage = () => {
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/resetpassword",
+        `${process.env.REACT_APP_API_URL}/resetpassword`,
         { email, otp: values.otp, newPassword: values.newPassword }
       );
       setVerificationMessage(response.data.message);

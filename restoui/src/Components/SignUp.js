@@ -56,7 +56,7 @@ function SignUpPage() {
   ) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/signup",
+        `${process.env.REACT_APP_API_URL}/signup`,
         values
       );
       notifySuccess();

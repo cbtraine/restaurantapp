@@ -24,7 +24,7 @@ const ForgotPasswordPage = () => {
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/forgotpassword",
+        `${process.env.REACT_APP_API_URL}/forgotpassword`,
         values
       );
       setResetMessage(response.data.message);
